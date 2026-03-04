@@ -1,0 +1,17 @@
+﻿[{
+        "id": "msg_001",
+        "from": "+1234567890",
+        "name": "John",
+        "message": "Hello, I need help",
+        "timestamp": "2026-03-01T12:30:00Z",
+        "label": "Support"
+    },
+    {
+        "id": "msg_002",
+        "from": "+1987654321",
+        "name": "Alice",
+        "message": "Can you call me back?",
+        "timestamp": "2026-03-01T13:00:00Z",
+        "label": "Callback"
+    }
+]

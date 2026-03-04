@@ -1,0 +1,31 @@
+﻿{
+    "name": "imessenger-backend",
+    "version": "1.0.0",
+    "main": "app.js",
+    "type": "module",
+    "scripts": {
+        "start": "node app.js",
+        "dev": "nodemon app.js",
+        "dev:all": "concurrently \"npm run dev\" \"npm --prefix ../frontend start\""
+    },
+    "nodemonConfig": {
+        "watch": [
+            "controllers",
+            "routes",
+            "services",
+            "models",
+            "app.js"
+        ],
+        "ext": "js,json"
+    },
+    "dependencies": {
+        "axios": "^1.6.7",
+        "cors": "^2.8.5",
+        "dotenv": "^16.4.5",
+        "express": "^4.19.2"
+    },
+    "devDependencies": {
+        "concurrently": "^8.2.0",
+        "nodemon": "^3.1.0"
+    }
+}
