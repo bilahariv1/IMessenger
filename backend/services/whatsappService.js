@@ -30,8 +30,8 @@ export async function sendTextMessage(to, messageText) {
             data: response.data
         };
     } catch (error) {
-        console.error('WhatsApp API Error:', error.response ? .data || error.message);
-        throw new Error(error.response ? .data ? .error ? .message || 'Failed to send WhatsApp message');
+        console.error('WhatsApp API Error:', error.response ?.data || error.message);
+        throw new Error(error.response ?.data ?.error ?.message || 'Failed to send WhatsApp message');
     }
 }
 
@@ -72,8 +72,8 @@ export async function sendTemplateMessage(to, templateName, parameters = []) {
             data: response.data
         };
     } catch (error) {
-        console.error('WhatsApp API Error:', error.response ? .data || error.message);
-        throw new Error(error.response ? .data ? .error ? .message || 'Failed to send WhatsApp template');
+        console.error('WhatsApp API Error:', error.response ?.data || error.message);
+        throw new Error(error.response ?.data ?.error ?.message || 'Failed to send WhatsApp template');
     }
 }
 
