@@ -1,12 +1,35 @@
-class Message {
-    constructor({ id, from, name, message, timestamp, label }) {
-        this.id = id;
-        this.from = from;
-        this.name = name;
-        this.message = message;
-        this.timestamp = timestamp;
-        this.label = label || '';
-    }
-}
+import mongoose from 'mongoose';
+
+const messageSchema = new mongoose.Schema({
+    from: {
+        type: String,
+        required: true,
+    },
+    name: {
+        type: String,
+        required: true,
+    },
+    message: {
+        type: String,
+        required: true,
+    },
+    timestamp: {
+        type: Date,
+        default: Date.now,
+    },
+    label: {
+        type: String,
+        default: '',
+    },
+    replies: [{
+        text: String,
+        timestamp: {
+            type: Date,
+            default: Date.now,
+        },
+    }, ],
+}, { timestamps: true });
+
+const Message = mongoose.model('Message', messageSchema);
 
 export default Message;

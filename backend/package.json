@@ -6,7 +6,8 @@
     "scripts": {
         "start": "node app.js",
         "dev": "nodemon app.js",
-        "dev:all": "concurrently \"npm run dev\" \"npm --prefix ../frontend start\""
+        "dev:all": "concurrently \"npm run dev\" \"npm --prefix ../frontend start\"",
+        "seed": "node seed.js"
     },
     "nodemonConfig": {
         "watch": [
@@ -22,7 +23,8 @@
         "axios": "^1.6.7",
         "cors": "^2.8.5",
         "dotenv": "^16.4.5",
-        "express": "^4.19.2"
+        "express": "^4.19.2",
+        "mongoose": "^8.1.0"
     },
     "devDependencies": {
         "concurrently": "^8.2.0",
