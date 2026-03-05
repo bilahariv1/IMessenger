@@ -1,39 +1,25 @@
 {
-	"name": "helloworld-sample",
-	"displayName": "helloworld-sample",
-	"description": "HelloWorld example for VS Code",
-	"version": "0.0.1",
-	"publisher": "vscode-samples",
-	"repository": "https://github.com/Microsoft/vscode-extension-samples/helloworld-sample",
-	"engines": {
-		"vscode": "^1.100.0"
-	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [],
-	"main": "./out/extension.js",
-	"contributes": {
-		"commands": [
-			{
-				"command": "extension.helloWorld",
-				"title": "Hello World"
-			}
-		]
-	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"lint": "eslint",
-		"watch": "tsc -watch -p ./"
-	},
-	"devDependencies": {
-		"@eslint/js": "^9.13.0",
-		"@stylistic/eslint-plugin": "^2.9.0",
-		"@types/node": "^22",
-		"@types/vscode": "^1.100.0",
-		"eslint": "^9.13.0",
-		"typescript": "^5.8.2",
-		"typescript-eslint": "^8.26.0"
-	}
+    "name": "imessenger",
+    "version": "1.0.0",
+    "description": "WhatsApp-like Messenger App",
+    "main": "backend/app.js",
+    "type": "module",
+    "engines": {
+        "node": ">=18.0.0",
+        "npm": ">=9.0.0"
+    },
+    "scripts": {
+        "install:all": "npm install --prefix backend && npm install --prefix frontend",
+        "start": "npm start --prefix backend",
+        "dev": "npm run dev:all --prefix backend",
+        "seed": "npm run seed --prefix backend",
+        "heroku-postbuild": "npm install --prefix backend"
+    },
+    "keywords": [
+        "messenger",
+        "whatsapp",
+        "chat"
+    ],
+    "author": "",
+    "license": "MIT"
 }
