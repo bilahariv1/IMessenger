@@ -20,7 +20,11 @@ export async function replyMessage(req, res) {
         const result = await apiService.sendReply(messageId, replyText);
         res.json(result);
     } catch (err) {
-        res.status(500).json({ error: 'Failed to send reply' });
+        console.error('Reply error:', err);
+        res.status(500).json({
+            error: 'Failed to send reply',
+            message: err.message
+        });
     }
 }
 
@@ -33,6 +37,36 @@ export async function replyBulk(req, res) {
         const result = await apiService.sendBulkReply(messageIds, replyText);
         res.json(result);
     } catch (err) {
-        res.status(500).json({ error: 'Failed to send bulk reply' });
+        console.error('Bulk reply error:', err);
+        res.status(500).json({
+            error: 'Failed to send bulk reply',
+            message: err.message
+        });
+    }
+}
+
+export async function sendTemplate(req, res) {
+    try {
+        const { messageId, templateName, parameters } = req.body;
+
+        if (!messageId || !templateName) {
+            return res.status(400).json({
+                error: 'Missing messageId or templateName'
+            });
+        }
+
+        const result = await apiService.sendTemplateMessage(
+            messageId,
+            templateName,
+            parameters || []
+        );
+
+        res.json(result);
+    } catch (err) {
+        console.error('Template message error:', err);
+        res.status(500).json({
+            error: 'Failed to send template message',
+            message: err.message
+        });
     }
 }

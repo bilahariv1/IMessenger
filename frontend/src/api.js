@@ -16,3 +16,12 @@ export async function replyBulk(messageIds, replyText) {
     const res = await axios.post(`${API_URL}/reply/bulk`, { messageIds, replyText });
     return res.data;
 }
+
+export async function sendTemplate(messageId, templateName, parameters) {
+    const res = await axios.post(`${API_URL}/template`, {
+        messageId,
+        templateName,
+        parameters
+    });
+    return res.data;
+}

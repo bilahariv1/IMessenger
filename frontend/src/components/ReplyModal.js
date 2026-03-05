@@ -15,7 +15,7 @@ function ReplyModal({ message, onClose, bulk }) {
             } else {
                 await replyMessage(message.id, replyText);
             }
-            setSuccess('Reply sent!');
+            setSuccess('Reply sent via WhatsApp!');
             setTimeout(onClose, 1000);
         } catch {
             setSuccess('Failed to send reply');
@@ -59,7 +59,7 @@ function ReplyModal({ message, onClose, bulk }) {
             /button> <
             button className = "btn btn-primary"
             type = "submit"
-            disabled = { loading } > { loading ? 'Sending...' : 'Send Reply' } <
+            disabled = { loading } > { loading ? 'Sending...' : 'Send Reply via WhatsApp' } <
             /button> <
             /div> <
             /form> <

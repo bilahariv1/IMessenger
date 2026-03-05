@@ -6,5 +6,6 @@ const router = express.Router();
 router.get('/messages', messageController.getAllMessages);
 router.post('/reply', messageController.replyMessage);
 router.post('/reply/bulk', messageController.replyBulk);
+router.post('/template', messageController.sendTemplate);
 
 export default router;

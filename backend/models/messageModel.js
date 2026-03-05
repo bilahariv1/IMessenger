@@ -27,6 +27,15 @@ const messageSchema = new mongoose.Schema({
             type: Date,
             default: Date.now,
         },
+        whatsappMessageId: String,
+        status: {
+            type: String,
+            enum: ['sent', 'failed', 'pending'],
+            default: 'pending'
+        },
+        error: String,
+        templateName: String,
+        parameters: [String]
     }, ],
 }, { timestamps: true });
 
