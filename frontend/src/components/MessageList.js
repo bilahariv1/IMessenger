@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { fetchMessages } from '../api';
 import MessageModal from './MessageModal';
 import ReplyModal from './ReplyModal';
+import TemplateModal from './TemplateModal';
 
 function MessageList() {
     const [messages, setMessages] = useState([]);
@@ -9,6 +10,7 @@ function MessageList() {
     const [loading, setLoading] = useState(true);
     const [openMsg, setOpenMsg] = useState(null);
     const [replyMsg, setReplyMsg] = useState(null);
+    const [templateMsg, setTemplateMsg] = useState(null);
     const [bulkReply, setBulkReply] = useState(false);
     const [search, setSearch] = useState('');
     const [filter, setFilter] = useState('');
@@ -33,14 +35,14 @@ function MessageList() {
     };
 
     return ( <
-            div className = "container mt-4" >
-            <
-            h2 > WhatsApp Messages < /h2> <
-            input className = "form-control mb-2"
-            placeholder = "Search by phone or name"
-            value = { search }
-            onChange = { e => setSearch(e.target.value) }
-            /> {
+        div className = "container mt-4" >
+        <
+        h2 > WhatsApp Messages < /h2> <
+        input className = "form-control mb-2"
+        placeholder = "Search by phone or name"
+        value = { search }
+        onChange = { e => setSearch(e.target.value) }
+        /> {
             loading ? ( <
                 div className = "spinner-border" / >
             ) : ( <
@@ -62,14 +64,15 @@ function MessageList() {
                         e.target.checked ? filtered.map(m => m.id) : []
                     )
                 }
-                /> < /
-                th > <
+                /> <
+                /th> <
                 th > From < /th> <
                 th > Name < /th> <
                 th > Label < /th> <
+                th > Message < /th> <
                 th > Timestamp < /th> <
-                th > Actions < /th> < /
-                tr > <
+                th > Actions < /th> <
+                /tr> <
                 /thead> <
                 tbody > {
                     filtered.map(msg => ( <
@@ -80,10 +83,9 @@ function MessageList() {
                         input type = "checkbox"
                         checked = { selected.includes(msg.id) }
                         onChange = {
-                            () => handleSelect(msg.id)
-                        }
-                        /> < /
-                        td > <
+                            () => handleSelect(msg.id) }
+                        /> <
+                        /td> <
                         td > { msg.from } < /td> <
                         td > { msg.name } < /td> <
                         td > { msg.label } < /td> <
@@ -94,29 +96,32 @@ function MessageList() {
                         button type = "button"
                         className = "btn btn-link"
                         onClick = {
-                            () => setOpenMsg(msg)
-                        } >
+                            () => setOpenMsg(msg) } >
                         Open <
                         /button> <
                         button type = "button"
                         className = "btn btn-primary btn-sm ms-2"
                         onClick = {
-                            () => setReplyMsg(msg)
-                        } >
+                            () => setReplyMsg(msg) } >
                         Reply <
-                        /button> < /
-                        td > <
+                        /button> <
+                        button type = "button"
+                        className = "btn btn-success btn-sm ms-2"
+                        onClick = {
+                            () => setTemplateMsg(msg) } >
+                        Template <
+                        /button> <
+                        /td> <
                         /tr>
                     ))
                 } <
-                /tbody> < /
-                table > {
+                /tbody> <
+                /table> {
                     selected.length > 1 && ( <
                         button type = "button"
                         className = "btn btn-success"
                         onClick = {
-                            () => setBulkReply(true)
-                        } >
+                            () => setBulkReply(true) } >
                         Bulk Reply <
                         /button>
                     )
@@ -127,31 +132,35 @@ function MessageList() {
             openMsg && ( <
                 MessageModal message = { openMsg }
                 onClose = {
-                    () => setOpenMsg(null)
-                }
+                    () => setOpenMsg(null) }
                 />
             )
         } {
             replyMsg && ( <
                 ReplyModal message = { replyMsg }
                 onClose = {
-                    () => setReplyMsg(null)
-                }
+                    () => setReplyMsg(null) }
                 bulk = { false }
+                />
+            )
+        } {
+            templateMsg && ( <
+                TemplateModal message = { templateMsg }
+                onClose = {
+                    () => setTemplateMsg(null) }
                 />
             )
         } {
             bulkReply && ( <
                 ReplyModal message = { messages.filter(m => selected.includes(m.id)) }
                 onClose = {
-                    () => setBulkReply(false)
-                }
+                    () => setBulkReply(false) }
                 bulk = { true }
                 />
             )
         } <
         /div>
-);
+    );
 }
 
 export default MessageList;

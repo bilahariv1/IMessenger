@@ -5,7 +5,7 @@ function MessageModal({ message, onClose }) {
         div className = "modal show d-block"
         tabIndex = "-1" >
         <
-        div className = "modal-dialog" >
+        div className = "modal-dialog modal-lg" >
         <
         div className = "modal-content" >
         <
@@ -24,7 +24,54 @@ function MessageModal({ message, onClose }) {
         <
         hr / >
         <
-        p > { message.message } < /p> <
+        p > { message.message } < /p>
+
+        {
+            message.replies && message.replies.length > 0 && ( <
+                >
+                <
+                hr / >
+                <
+                h6 > Replies: < /h6> <
+                ul className = "list-group" > {
+                    message.replies.map((reply, index) => ( <
+                        li key = { index }
+                        className = "list-group-item" >
+                        <
+                        div >
+                        <
+                        strong > { reply.templateName ? `Template: ${reply.templateName}` : 'Text Reply' } <
+                        /strong> {
+                            reply.status && ( <
+                                span className = { `badge ms-2 ${
+                                                        reply.status === 'sent' ? 'bg-success' :
+                                                        reply.status === 'failed' ? 'bg-danger' :
+                                                        'bg-warning'
+                                                    }` } > { reply.status } <
+                                /span>
+                            )
+                        } <
+                        /div> <
+                        div className = "mt-2" > { reply.text } < /div> {
+                            reply.whatsappMessageId && ( <
+                                small className = "text-muted" > WhatsApp ID: { reply.whatsappMessageId } < /small>
+                            )
+                        } {
+                            reply.error && ( <
+                                div className = "alert alert-danger mt-2 mb-0" >
+                                Error: { reply.error } <
+                                /div>
+                            )
+                        } <
+                        small className = "text-muted d-block mt-1" > { new Date(reply.timestamp).toLocaleString() } <
+                        /small> <
+                        /li>
+                    ))
+                } <
+                /ul> <
+                />
+            )
+        } <
         /div> <
         /div> <
         /div> <
