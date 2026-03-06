@@ -21,6 +21,17 @@ function MessageModal({ message, onClose }) {
         p > < strong > From: < /strong> {message.from}</p >
         <
         p > < strong > Timestamp: < /strong> {new Date(message.timestamp).toLocaleString()}</p >
+        {
+            message.incomingPayload && (
+                <>
+                    <hr />
+                    <h6>Incoming Webhook Payload</h6>
+                    <pre className="bg-light p-2 small" style={{ maxHeight: '260px', overflowY: 'auto' }}>
+                        {JSON.stringify(message.incomingPayload, null, 2)}
+                    </pre>
+                </>
+            )
+        }
         <
         hr / >
         <
