@@ -1,0 +1,13 @@
+node_modules
+npm-debug.log
+.git
+.gitignore
+.env
+.env.development
+.env.local
+.vscode
+.idea
+*.md
+.github
+docs
+demo.gif

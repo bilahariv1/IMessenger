@@ -34,7 +34,8 @@ export async function sendReply(messageId, replyText) {
                         text: replyText,
                         timestamp: new Date(),
                         whatsappMessageId: whatsappResponse.messageId,
-                        status: 'sent'
+                        status: 'sent',
+                        whatsappApiResponse: whatsappResponse.data
                     }
                 }
             }, { new: true }
@@ -91,7 +92,8 @@ export async function sendBulkReply(messageIds, replyText) {
                                 text: replyText,
                                 timestamp: new Date(),
                                 whatsappMessageId: whatsappResponse.messageId,
-                                status: 'sent'
+                                status: 'sent',
+                                whatsappApiResponse: whatsappResponse.data
                             }
                         }
                     }
@@ -174,7 +176,8 @@ export async function sendTemplateMessage(messageId, templateName, parameters) {
                         whatsappMessageId: whatsappResponse.messageId,
                         templateName: templateName,
                         parameters: parameters,
-                        status: 'sent'
+                        status: 'sent',
+                        whatsappApiResponse: whatsappResponse.data
                     }
                 }
             }, { new: true }

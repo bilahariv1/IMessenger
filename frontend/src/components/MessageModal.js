@@ -57,8 +57,27 @@ function MessageModal({ message, onClose }) {
                                 small className = "text-muted" > WhatsApp ID: { reply.whatsappMessageId } < /small>
                             )
                         } {
-                            reply.error && ( <
-                                div className = "alert alert-danger mt-2 mb-0" >
+                            reply.parameters && reply.parameters.length > 0 && (
+                                <div className="mt-1">
+                                    <small className="text-muted">Parameters: {reply.parameters.join(', ')}</small>
+                                </div>
+                            )
+                        } {
+                            reply.whatsappApiResponse && (
+                                <div className="mt-2">
+                                    <details>
+                                        <summary className="text-muted small" style={{cursor: 'pointer'}}>
+                                            WhatsApp API Response
+                                        </summary>
+                                        <pre className="bg-light p-2 mt-1 small">
+                                            {JSON.stringify(reply.whatsappApiResponse, null, 2)}
+                                        </pre>
+                                    </details>
+                                </div>
+                            )
+                        } {
+                            reply.error && (
+                                <div className = "alert alert-danger mt-2 mb-0" >
                                 Error: { reply.error } <
                                 /div>
                             )
