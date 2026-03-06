@@ -35,7 +35,11 @@ const messageSchema = new mongoose.Schema({
         },
         error: String,
         templateName: String,
-        parameters: [String]
+        parameters: [String],
+        whatsappApiResponse: {
+            type: mongoose.Schema.Types.Mixed,
+            default: null
+        }
     }, ],
 }, { timestamps: true });
 

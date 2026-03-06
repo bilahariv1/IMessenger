@@ -70,6 +70,7 @@ function MessageList() {
                 th > Name < /th> <
                 th > Label < /th> <
                 th > Message < /th> <
+                th > Replies < /th> <
                 th > Timestamp < /th> <
                 th > Actions < /th> <
                 /tr> <
@@ -90,6 +91,35 @@ function MessageList() {
                         td > { msg.name } < /td> <
                         td > { msg.label } < /td> <
                         td > { msg.message.slice(0, 30) }... < /td> <
+                        td >
+                        {
+                            msg.replies && msg.replies.length > 0 ? (
+                                <div>
+                                    <span className="badge bg-primary me-2">
+                                        {msg.replies.length} {msg.replies.length === 1 ? 'Reply' : 'Replies'}
+                                    </span>
+                                    <div className="small">
+                                        {msg.replies.map((reply, idx) => (
+                                            <div key={idx} className="mb-1">
+                                                <span className={`badge ${
+                                                    reply.status === 'sent' ? 'bg-success' :
+                                                    reply.status === 'failed' ? 'bg-danger' : 'bg-warning'
+                                                }`}>
+                                                    {reply.status}
+                                                </span>
+                                                <span className="ms-1 text-muted">
+                                                    {reply.text?.slice(0, 20) || reply.templateName}
+                                                    {reply.text?.length > 20 ? '...' : ''}
+                                                </span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            ) : (
+                                <span className="text-muted">No replies</span>
+                            )
+                        }
+                        </td> <
                         td > { new Date(msg.timestamp).toLocaleString() } < /td> <
                         td >
                         <
