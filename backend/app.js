@@ -29,6 +29,16 @@ app.use('/api', webhookRoutes);
 // API routes
 app.use('/api', messageRoutes);
 
+// Serve privacy policy at a clean URL path for Meta App Settings
+app.get('/privacy-policy', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/build/privacy-policy.html'));
+});
+
+// Also support direct .html path explicitly
+app.get('/privacy-policy.html', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/build/privacy-policy.html'));
+});
+
 // Serve index.html for all unmatched routes (React Router)
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../frontend/build/index.html'));
