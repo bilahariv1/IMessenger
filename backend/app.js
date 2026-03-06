@@ -5,6 +5,7 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import connectDB from './config/db.js';
 import messageRoutes from './routes/messageRoutes.js';
+import webhookRoutes from './routes/webhookRoutes.js';
 
 const __filename = fileURLToPath(
     import.meta.url);
@@ -21,6 +22,9 @@ app.use(express.static(path.join(__dirname, '../frontend/build')));
 
 // Connect to MongoDB
 connectDB();
+
+// Webhook routes (must be before other API routes)
+app.use('/api', webhookRoutes);
 
 // API routes
 app.use('/api', messageRoutes);
