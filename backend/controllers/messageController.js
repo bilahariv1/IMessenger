@@ -54,7 +54,7 @@ export async function sendTemplate(req, res) {
                 error: 'Missing messageId or templateName'
             });
         }
-
+        console.log('i am in sendTemplate');
         const result = await apiService.sendTemplateMessage(
             messageId,
             templateName,
@@ -64,9 +64,11 @@ export async function sendTemplate(req, res) {
         res.json(result);
     } catch (err) {
         console.error('Template message error:', err);
-        res.status(500).json({
+        const statusCode = err.statusCode || 500;
+        res.status(statusCode).json({
             error: 'Failed to send template message',
-            message: err.message
+            message: err.message,
+            details: err.details || null
         });
     }
 }

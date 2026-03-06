@@ -13,7 +13,7 @@ function TemplateModal({ message, onClose }) {
         e.preventDefault();
         setLoading(true);
         setResult('');
-
+        console.log('i am in handleSubmit');
         try {
             const parameters = [param1, param2, param3].filter(p => p.trim() !== '');
             const response = await sendTemplate(message._id, templateName, parameters);
@@ -41,8 +41,8 @@ function TemplateModal({ message, onClose }) {
         h5 className = "modal-title" > Send WhatsApp Template to { message.name } < /h5> <
         button type = "button"
         className = "btn-close"
-        onClick = { onClose } > < /button> <
-        /div>
+        onClick = { onClose } > < /button> < /
+        div >
 
         <
         div className = "modal-body" >
@@ -53,17 +53,18 @@ function TemplateModal({ message, onClose }) {
         select className = "form-select"
         value = { templateName }
         onChange = {
-            (e) => setTemplateName(e.target.value) }
+            (e) => setTemplateName(e.target.value)
+        }
         required >
         <
         option value = "jaspers_market_order_confirmation_v1" >
         Order Confirmation <
-        /option> <
-        /select> <
+        /option> < /
+        select > <
         small className = "text-muted" >
         Template: jaspers_market_order_confirmation_v1 <
-        /small> <
-        /div>
+        /small> < /
+        div >
 
         <
         div className = "mb-3" >
@@ -73,7 +74,8 @@ function TemplateModal({ message, onClose }) {
         className = "form-control"
         value = { param1 }
         onChange = {
-            (e) => setParam1(e.target.value) }
+            (e) => setParam1(e.target.value)
+        }
         placeholder = "e.g., John Doe"
         required /
         >
@@ -88,7 +90,8 @@ function TemplateModal({ message, onClose }) {
         className = "form-control"
         value = { param2 }
         onChange = {
-            (e) => setParam2(e.target.value) }
+            (e) => setParam2(e.target.value)
+        }
         placeholder = "e.g., 123456"
         required /
         >
@@ -103,7 +106,8 @@ function TemplateModal({ message, onClose }) {
         className = "form-control"
         value = { param3 }
         onChange = {
-            (e) => setParam3(e.target.value) }
+            (e) => setParam3(e.target.value)
+        }
         placeholder = "e.g., Mar 4, 2026"
         required /
         >
@@ -128,12 +132,11 @@ function TemplateModal({ message, onClose }) {
         /button> <
         button className = "btn btn-primary"
         type = "submit"
-        disabled = { loading } >
-        { loading ? 'Sending...' : 'Send Template via WhatsApp' } <
-        /button> <
-        /div> <
-        /form> <
-        /div> <
+        disabled = { loading } > { loading ? 'Sending...' : 'Send Template via WhatsApp' } <
+        /button> < /
+        div > <
+        /form> < /
+        div > <
         /div>
     );
 }
